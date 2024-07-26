@@ -1,6 +1,10 @@
-module github.com/jmkraut/xk6-rsa
+module xk6-rsa
 
 go 1.22.5
+
+replace ( 
+	xk6-rsa v1.0.0 => github.com/jmkraut/xk6-rsa v1.0.0 
+)
 
 require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
