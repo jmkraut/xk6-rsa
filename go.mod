@@ -1,4 +1,4 @@
-module xk6-rsa
+module github.com/jmkraut/xk6-rsa
 
 go 1.22.5
 
