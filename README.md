@@ -6,7 +6,15 @@ An incredibly simple k6 extension for signing a collection of claims with a prov
 
 Look within example.js for an example of how to use the extension.
 
-### How To Compile The Custom k6 Binary
+### How To Add The Extension To Your k6 Binary.
+
+Run the standard xk6 build command using the with flag.
+
+```
+xk6 build --with github.com/jmkraut/xk6-rsa
+```
+
+### How To Compile The Custom k6 Binary Locally
 
 Ensure you are within the xk6-rsa folder and then run the following:
 
