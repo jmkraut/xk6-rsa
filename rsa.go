@@ -1,6 +1,8 @@
 package rsa
 
 import (
+	"os"
+
 	"github.com/golang-jwt/jwt"
 	"go.k6.io/k6/js/modules"
 )
@@ -10,11 +12,26 @@ func init() {
 }
 
 // Rsa is the custom API type.
-type Rsa struct {}
+type Rsa struct{}
 
-// Sign returns a signed JWT, or an error otherwise.
-func (r *Rsa) Sign(claims map[string]any, privateKey string) (string, error) {
-	parsedPrivateKey, err := jwt.ParseRSAPrivateKeyFromPEM([]byte(privateKey))
+// SignFromString returns a signed JWT, or an error otherwise.
+func (r *Rsa) SignFromString(claims map[string]any, privateKey string) (string, error) {
+	return sign(claims, []byte(privateKey))
+}
+
+// SignFromFilePath reads from a file path, and if the path is valid returns a signed JWT, or an error otherwise.
+func (r *Rsa) SignFromFilePath(claims map[string]any, privateKeyPath string) (string, error) {
+	privateKeyFile, err := os.ReadFile(privateKeyPath)
+
+	if err != nil {
+		return "", err
+	}
+
+	return sign(claims, privateKeyFile)
+}
+
+func sign(claims map[string]any, privateKeyFile []byte) (string, error) {
+	parsedPrivateKey, err := jwt.ParseRSAPrivateKeyFromPEM(privateKeyFile)
 
 	if err != nil {
 		return "", err

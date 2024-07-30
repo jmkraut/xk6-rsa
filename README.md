@@ -4,7 +4,7 @@ An incredibly simple k6 extension for signing a collection of claims with a prov
 
 ### Example
 
-Look within example.js for an example of how to use the extension.
+Look within example.js for an example of how to use the extension. You can pass a private key from string, or from a file path.
 
 ### How To Add The Extension To Your k6 Binary.
 
